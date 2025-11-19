@@ -1,1 +1,0 @@
-import{z as e}from"./index-DJYwiajf.js";const a={async getProducts(t={}){return(await e.get("/products",{params:t})).data},async getProductById(t){return(await e.get(`/products/${t}`)).data},async getCategories(){return(await e.get("/categories")).data}};export{a as p};
