@@ -1,23 +1,60 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { useAuthStore } from '@/stores/auth'
+
+const routes = [
+  {
+    path: '/',
+    name: 'Home',
+    component: () => import('@/views/HomeView.vue'),
+    meta: { title: 'Головна | Vue Lottery App' }
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: () => import('@/views/AboutView.vue'),
+    meta: { title: 'Про додаток | Vue Lottery App' }
+  },
+  {
+    path: '/lottery',
+    name: 'Lottery',
+    component: () => import('@/views/LotteryView.vue'),
+    meta: {
+      requiresAuth: true,
+      title: 'Учасники | Vue Lottery App'
+    }
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/LoginView.vue'),
+    meta: { title: 'Вхід | Vue Lottery App' }
+  },
+  {
+    path: '/users/:id',
+    name: 'UserDetail',
+    component: () => import('@/views/UserDetailView.vue'),
+    meta: { title: 'Профіль | Vue Lottery App' }
+  },
+]
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView,
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue'),
-    },
-  ],
+  history: createWebHistory(),
+  routes,
+  linkActiveClass: 'active',
+  linkExactActiveClass: 'active',
+})
+
+router.beforeEach((to, from, next) => {
+  // Зміна заголовка
+  document.title = (to.meta.title as string) || 'Vue Lottery App'
+
+  // Авторизація
+  const authStore = useAuthStore()
+  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
+    next('/login')
+  } else {
+    next()
+  }
 })
 
 export default router

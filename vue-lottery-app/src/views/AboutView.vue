@@ -1,15 +1,6 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="container py-4">
+    <h2>Про додаток</h2>
+    <p>SPA на Vue 3 + TypeScript + vue-router + Repository Pattern + VeeValidate</p>
   </div>
 </template>
-
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>
