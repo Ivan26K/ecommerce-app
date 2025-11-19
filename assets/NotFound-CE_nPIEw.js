@@ -1,0 +1,1 @@
+import{_ as o,b as t,i as n,e as s}from"./index-DJYwiajf.js";const r={},a={class:"not-found"};function c(d,e){return n(),t("div",a,[...e[0]||(e[0]=[s("h1",null,"404 - Page Not Found",-1)])])}const f=o(r,[["render",c]]);export{f as default};
