@@ -45,7 +45,6 @@ const routes: RouteRecordRaw[] = [
 ]
 
 const router = createRouter({
-  // ✅ ФІКС: Використовуємо Hash History
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes,
   scrollBehavior(to, from, savedPosition) {
